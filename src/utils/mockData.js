@@ -1,44 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-const Header = () => {
-  return (
-    <div className="header">
-        <div className="logo-container">
-          <img className="logo"
-          src="https://cdn.dribbble.com/userupload/16229602/file/original-722ea619795a6f6c0ded53a67001f0f4.jpg?resize=1504x1128&vertical=center" alt="Logo" />
-        </div>
-        <div className="nav-items-container">
-          <ul className="nav-items">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Cart</li>
-            <li><a href="/login">Login</a></li>
-          </ul>
-        </div>
-    </div>
-  );
-};
-
-const RestroCard = (props) => {
-  const {resData} = props;
-  const { name, locality, areaName, costForTwo, cuisines, avgRating, sla } = resData?.info;
-
-  return (
-      <div className="restro-card">
-        <img className="restro-logo" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData?.info?.cloudinaryImageId}`} alt="Restaurant Logo" />
-        <h2>{name}</h2>
-        <p>{locality}</p>
-        <p>{areaName}</p>
-        <p>{costForTwo}</p>
-        <p>{cuisines.join(", ")}</p>
-        <p>{avgRating} Stars</p>
-        <p>{sla.deliveryTime} mins</p>
-      </div>
-  );
-};
-
 const resList = [
     {
       "info":{
@@ -1938,33 +1897,4 @@ const resList = [
       }
     }
 ];
-const Body = () => {
-  return (
-    <div className="body">
-        <div className="search-container">
-            <input type="text" placeholder="Search for items..." />
-            <button>Search</button>
-        </div>
-        <div className="restro-card-container">
-            {
-              resList.map((restro) => (
-                  <RestroCard key={restro.info.id} resData={restro} />
-              ))
-            }
-        </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />  
-      {/* <Footer /> */}
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AppLayout />); // render method converts the object to h1 tag and fetches the output
+export default resList;
