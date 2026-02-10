@@ -2,21 +2,23 @@ import RestroCard from "./RestroCard";
 import resList from "../utils/mockData";
 import {useEffect, useState} from "react";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import { OFFLINE_IMAGE_URL } from "../utils/constants";
+
 const Body = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+    const isOnline = useOnlineStatus();
+
     useEffect(() => {
         fetchData();
     }, []);
 
     const fetchData = async () => {
         try {
-          // Use a CORS proxy to avoid CORS issues during development either as extension in browser or through any sites
-          // Example site: https://corsproxy.io/
-          // Use as https://corsproxy.io/?<original_url>
             const data = await fetch(
-              "https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0697174&lng=80.2432839"
+              "http://localhost:5000/api/dapi/restaurants/list/v5?lat=13.0697174&lng=80.2432839"
             );
             if (!data.ok) {
                 throw new Error(`HTTP error! status: ${data.status}`);
@@ -25,20 +27,30 @@ const Body = () => {
             setRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         } catch (error) {
+            // console.error("Failed to fetch restaurants:", error);
             setRestaurants(resList); // fallback to mock data
             setFilteredRestaurants(resList);
         }
     };
 
+    if (!isOnline) {
+      return (
+        <div>
+          <h1>You are offline. Please check your internet connection.</h1>
+          <img src={OFFLINE_IMAGE_URL} alt="Offline" />
+        </div>
+      );
+    }
+
     return restaurants.length === 0 ? <Shimmer/> : (
-    <div className="body">
-        <div className="search-container">
-            <input type="text" name="search" placeholder="Search for items..."
+    <div className="p-2.5">
+        <div className="flex gap-2.5 mb-2.5">
+            <input className="border border-gray-300 rounded p-1" type="text" name="search" placeholder="Search for items..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             />
             <button
-            className="search-btn"
+            className="search-btn bg-amber-300 text-black rounded p-1"
             onClick={() => {
               const filteredList = restaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -47,9 +59,9 @@ const Body = () => {
             }}
             >Search</button>
         </div>
-        <div className="filter-container">
+        <div className="flex gap-2.5 mb-2.5">
             <button
-            className="filter-btn"
+            className="filter-btn bg-green-500 text-white rounded p-1"
             onClick={() => {
               const filteredList = restaurants.filter(
                 (res) => res.info.avgRating > 4.5
@@ -69,7 +81,7 @@ const Body = () => {
             }} />
             <label htmlFor="veg-only"> Pure Veg Only</label>
         </div>
-        <div className="restro-card-container">
+        <div className="flex gap-2.5 mb-2.5 self-start flex-wrap">
             {
               filteredRestaurants.map((restro) => (
                   <RestroCard key={restro.info.id} resData={restro} />
