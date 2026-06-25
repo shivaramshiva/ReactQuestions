@@ -1,9 +1,10 @@
-import RestroCard from "./RestroCard";
+import RestroCard, {PromotedRestroCard} from "./RestroCard";
 import resList from "../utils/mockData";
 import {useEffect, useState} from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { OFFLINE_IMAGE_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -82,11 +83,18 @@ const Body = () => {
             <label htmlFor="veg-only"> Pure Veg Only</label>
         </div>
         <div className="flex gap-2.5 mb-2.5 self-start flex-wrap">
-            {
-              filteredRestaurants.map((restro) => (
-                  <RestroCard key={restro.info.id} resData={restro} />
-              ))
-            }
+              {filteredRestaurants.map((restro) => {
+                if (restro.info.promoted) {
+                  const Promoted = PromotedRestroCard(RestroCard);
+                  return (
+                    <Promoted key={restro.info.id} resData={restro} />
+                  );
+                } else {
+                  return (
+                    <RestroCard key={restro.info.id} resData={restro} />
+                  );
+                }
+              })}
         </div>
     </div>
   );

@@ -31,6 +31,9 @@ const Header = () => {
               <Link to="/contact">Contact</Link>
             </li>
             <li className="cursor-pointer decoration-underline hover:text-blue-500 hover:decoration-none">
+              <Link to="/todo">Todo App</Link>
+            </li>
+            <li className="cursor-pointer decoration-underline hover:text-blue-500 hover:decoration-none">
               <Link to="/cart">Cart</Link>
             </li>
             <li className="cursor-pointer decoration-underline hover:text-blue-500 hover:decoration-none font-bold">

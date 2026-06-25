@@ -7,14 +7,14 @@ class UserClass extends React.Component {
             userInfo: "Default User",
             count: 0
         };
-        console.log(`${props.name} Child Constructor`);
+        // console.log(`${props.name} Child Constructor`);
     }
 
     async componentDidMount() {
         const data = await fetch("https://api.github.com/users/shivaramshiva");
         const json = await data.json();
         this.setState({ userInfo: json });
-        console.log(`${this.state.userInfo.name} Child ComponentDidMount`);
+        // console.log(`${this.state.userInfo.name} Child ComponentDidMount`);
     }
 
     componentDidUpdate() {

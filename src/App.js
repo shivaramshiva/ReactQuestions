@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import TodoApp from './components/TodoApp';
 // import About from './components/About';
 import Contact from './components/Contact';
 import Error from './components/Error';
@@ -23,11 +26,13 @@ import RestroMenu from './components/RestroMenu';
 const About = lazy(() => import('./components/About'));
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      {/* <Footer /> */}
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <Header />
+        <Outlet />
+        {/* <Footer /> */}
+      </div>
+    </Provider>
   );
 };
 
@@ -59,6 +64,10 @@ const appRouter = createBrowserRouter(
         {
           path: "/restaurant/:resId",
           element: <RestroMenu />,
+        },
+        {
+          path: "/todo",
+          element: <TodoApp />,
         },
       ],
       errorElement: <Error />,

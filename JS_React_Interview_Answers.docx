@@ -1,0 +1,201 @@
+JavaScript & React Interview Q&A
+
+---
+
+JavaScript Basic:
+
+1. **Popular features of ES6:**
+   - Arrow functions, let & const, template literals, destructuring, default/rest/spread parameters, classes, modules (import/export), promises, and enhanced object literals.
+
+2. **Object-oriented features in ES6:**
+   - Classes, inheritance (extends), super(), static methods, and class constructors.
+
+3. **Difference between let and const? What distinguishes both from var?**
+   - `let` allows reassignment, `const` does not. Both are block-scoped, unlike `var` which is function-scoped and hoisted.
+
+4. **Arrow function:**
+   - A concise syntax for writing functions. Does not have its own `this`, `arguments`, or `super`.
+   - Example: `const add = (a, b) => a + b;`
+
+5. **Template literals in ES6:**
+   - String literals allowing embedded expressions. Use backticks (`` ` ``) and `${}` for interpolation.
+   - Example: ``Hello, ${name}``
+
+6. **Spread operator:**
+   - `...` expands arrays/objects into individual elements. Used for copying, merging, etc.
+   - Example: `[...arr1, ...arr2]`
+
+7. **Destructuring in ES6:**
+   - Extracts values from arrays/objects into variables.
+   - Example: `const [a, b] = arr; const {x, y} = obj;`
+
+8. **Rest parameter:**
+   - `...args` collects remaining arguments into an array.
+   - Example: `function sum(...nums) {}`
+
+9. **Default parameters:**
+   - Assign default values to function parameters.
+   - Example: `function greet(name = 'Guest') {}`
+
+10. **IIFE:**
+    - Immediately Invoked Function Expression. Runs as soon as it is defined.
+    - Example: `(function(){ ... })();`
+
+11. **Difference between find and filter:**
+    - `find` returns the first matching element. `filter` returns all matching elements as an array.
+
+12. **Difference between foreach and map:**
+    - `forEach` executes a function for each array element, returns undefined. `map` returns a new array.
+
+13. **Export Default vs Named Export:**
+    - Default: `export default MyComponent;` Import without braces. Named: `export const x = ...;` Import with braces.
+
+14. **Hoisting:**
+    - Variable and function declarations are moved to the top of their scope before code execution. `let` and `const` are hoisted but not initialized.
+
+15. **Closure:**
+    - A function that remembers its lexical scope even when executed outside that scope.
+    - Example: `function outer() { let x = 1; return function() { return x; } }`
+
+16. **Micro task vs macro task:**
+    - Microtasks: Promises, queueMicrotask. Macrotasks: setTimeout, setInterval. Microtasks run before the next render, after the current script.
+
+---
+
+JavaScript Advanced:
+
+1. **Generator function:**
+   - Functions that can be paused and resumed using `function*` and `yield`.
+
+2. **Promises in ES6:**
+   - Objects representing eventual completion/failure of async operations. Use `.then`, `.catch`.
+
+3. **Async/await:**
+   - Syntactic sugar over promises for writing async code in a synchronous style.
+
+4. **for..of vs for..in:**
+   - `for..of` iterates over iterable values (arrays, strings). `for..in` iterates over object keys.
+
+---
+
+React Basic:
+
+1. **Virtual DOM:**
+   - A lightweight JS representation of the real DOM. React updates the virtual DOM, then efficiently updates the real DOM.
+
+2. **Creating components:**
+   - Function or class components. Example: `function MyComp() {}` or `class MyComp extends React.Component {}`
+
+3. **State in React:**
+   - Data managed within a component, using `useState` or `this.state`.
+
+4. **Props in React:**
+   - Data passed from parent to child components.
+
+5. **Key prop:**
+   - Unique identifier for list items. Helps React optimize rendering.
+
+6. **Component lifecycle phases:**
+   - Mounting, updating, unmounting. (Class: componentDidMount, etc. Function: useEffect)
+
+7. **Refs:**
+   - Access DOM nodes or React elements. Created with `useRef` or `createRef`.
+
+8. **Controlled components:**
+   - Form elements controlled by React state.
+
+9. **Uncontrolled components:**
+   - Form elements managed by the DOM, accessed via refs.
+
+10. **Fragments:**
+    - `<></>` or `<React.Fragment>`. Group elements without extra DOM nodes.
+
+11. **Why fragments over divs:**
+    - Avoids unnecessary DOM nodes, better performance and cleaner markup.
+
+12. **Portals:**
+    - Render children into a DOM node outside the parent hierarchy. Use `ReactDOM.createPortal`.
+
+13. **Stateless components:**
+    - Components without state (function components).
+
+14. **Stateful components:**
+    - Components with state (class or function with useState).
+
+15. **Pure Components:**
+    - Only re-render if props/state change. Class: `PureComponent`, Function: `React.memo`.
+
+16. **JSX:**
+    - JavaScript XML. Syntax extension for writing UI in React.
+
+17. **Advantages/limitations of React:**
+    - Advantages: Reusable components, fast updates, large ecosystem. Limitations: Learning curve, boilerplate, fast-changing.
+
+18. **Styling in React:**
+    - Inline styles, CSS files, CSS modules, styled-components, Tailwind, etc.
+
+19. **Strict mode:**
+    - Tool for highlighting potential problems. Wrap with `<React.StrictMode>`.
+
+20. **Error Boundaries:**
+    - Components that catch JS errors in children and display fallback UI. Implemented with class components.
+
+21. **Features of React [USB]:**
+    - Component-based, virtual DOM, unidirectional data flow, hooks, fast rendering.
+
+22. **How React differs from other JS libraries [USB]:**
+    - Virtual DOM, declarative UI, component-based, strong ecosystem.
+
+23. **Sharing data between components [USB]:**
+    - Props, context, Redux, or callback functions.
+
+24. **Functional vs class component [USB]:**
+    - Functional: simpler, hooks, no `this`. Class: lifecycle methods, `this` binding.
+
+---
+
+React Advanced:
+
+1. **Optimization Techniques:**
+   - Memoization (`React.memo`, `useMemo`, `useCallback`), code splitting, lazy loading, avoiding unnecessary renders.
+
+2. **React hooks:**
+   - Functions like `useState`, `useEffect`, `useRef`, `useMemo`, `useCallback`, `useReducer` for managing state, side effects, refs, and performance.
+
+3. **Preventing re-renders:**
+   - Use `React.memo`, `useMemo`, `useCallback`, and avoid changing props/state unnecessarily.
+
+4. **Passing data between components:**
+   - Props, context, Redux, callback functions.
+
+5. **Higher Order Components:**
+   - Functions that take a component and return a new component with enhanced behavior.
+
+6. **Class vs functional component:**
+   - Functional: hooks, no `this`, easier to test. Class: lifecycle methods, more boilerplate.
+
+7. **How React loads in browser:**
+   - Bundler loads JS, React renders virtual DOM, updates real DOM.
+
+8. **Other libraries used:**
+   - Redux, React Router, Axios, Styled-components, Jest, etc.
+
+9. **useEffect and lifecycle:**
+   - `useEffect` covers componentDidMount, componentDidUpdate, componentWillUnmount.
+
+10. **useRef, useMemo, useCallback:**
+    - `useRef`: persist values across renders, access DOM. 
+    `useMemo`: memoize values. 
+    `useCallback`: memoize functions.
+
+11. **React vs Angular:**
+    - React: library, virtual DOM, JSX, unidirectional. Angular: framework, real DOM, TypeScript, two-way binding.
+
+12. **Class vs functional component preference:**
+    - Functional preferred for simplicity, hooks, less boilerplate.
+
+13. **useMemo vs useCallback [USB]:**
+    - `useMemo` memoizes values, `useCallback` memoizes functions. Both optimize performance.
+
+14. **React Unit Testing:**
+    - Use Jest and React Testing Library to test components, simulate events, and check rendering/output.

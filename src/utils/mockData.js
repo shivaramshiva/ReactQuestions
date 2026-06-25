@@ -36,6 +36,7 @@ const resList = [
           },
           "select":true,
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -133,6 +134,7 @@ const resList = [
             
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -221,6 +223,7 @@ const resList = [
             
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1060,6 +1063,7 @@ const resList = [
             
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1156,6 +1160,7 @@ const resList = [
             ]
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1258,6 +1263,7 @@ const resList = [
             ]
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1363,6 +1369,7 @@ const resList = [
             ]
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1656,6 +1663,7 @@ const resList = [
             ]
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1751,6 +1759,7 @@ const resList = [
             ]
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{
@@ -1773,7 +1782,7 @@ const resList = [
             }
           },
           "aggregatedDiscountInfoV3":{
-            "header":"ITEMS",
+            "header":"ITEMS", 
             "subHeader":"AT ₹39"
           },
           "differentiatedUi":{
@@ -1845,6 +1854,7 @@ const resList = [
             
           },
           "isOpen":true,
+"promoted":true,
           "type":"F",
           "badgesV2":{
             "entityBadges":{

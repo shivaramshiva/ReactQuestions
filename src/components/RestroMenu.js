@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { menuDetails } from "../utils/menuMockData";
+import menuDetails from "../utils/menuMockData";
 import { useParams } from "react-router-dom";
 const RestroMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -23,13 +23,37 @@ const RestroMenu = () => {
     }
   };
 
+  // Log the structure for debugging
+  console.log('resInfo:', resInfo);
+
+  // Extract menu items for Swiggy API or mock data
+  let menuItems = [];
+  if (resInfo && resInfo.data && Array.isArray(resInfo.data.cards)) {
+    // Try to find the REGULAR card group
+    const groupedCard = resInfo.data.cards.find(
+      c => c.groupedCard && c.groupedCard.cardGroupMap && c.groupedCard.cardGroupMap.REGULAR
+    );
+    if (groupedCard) {
+      const regularCards = groupedCard.groupedCard.cardGroupMap.REGULAR.cards;
+      // Flatten all itemCards arrays
+      menuItems = regularCards
+        .flatMap(card => card.card.card.itemCards || [])
+        .map(ic => ic.card.info);
+    }
+  } else if (Array.isArray(resInfo)) {
+    menuItems = resInfo;
+  } else if (resInfo && Array.isArray(resInfo.items)) {
+    menuItems = resInfo.items;
+  } else if (resInfo && resInfo.data && Array.isArray(resInfo.data.items)) {
+    menuItems = resInfo.data.items;
+  }
+
   return (
-    console.log(resInfo),
     <div className="restro-menu">
       <h2>Restaurant Menu</h2>
       <ul>
-        {resInfo ? (
-          resInfo.map((item) => <li key={item.id}>{item.name}</li>)
+        {menuItems.length > 0 ? (
+          menuItems.map((item) => <li key={item.id}>{item.name}</li>)
         ) : (
           <li>Loading...</li>
         )}
